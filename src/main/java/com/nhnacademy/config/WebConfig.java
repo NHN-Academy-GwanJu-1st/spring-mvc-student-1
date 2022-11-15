@@ -47,7 +47,7 @@ public class WebConfig implements WebMvcConfigurer, ApplicationContextAware, Mes
         viewResolver.setTemplateEngine(templateEngine());
         viewResolver.setCharacterEncoding("UTF-8");
         viewResolver.setOrder(1);
-        viewResolver.setViewNames(new String[] { "thymeleaf/*" });
+        viewResolver.setViewNames(new String[] { "view/*" });
 
         return viewResolver;
     }
@@ -64,7 +64,7 @@ public class WebConfig implements WebMvcConfigurer, ApplicationContextAware, Mes
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
         templateResolver.setApplicationContext(applicationContext);
         templateResolver.setCharacterEncoding("UTF-8");
-        templateResolver.setPrefix("/WEB-INF/view/");
+        templateResolver.setPrefix("/WEB-INF/");
         templateResolver.setSuffix(".html");
         templateResolver.setTemplateMode("HTML5");
 

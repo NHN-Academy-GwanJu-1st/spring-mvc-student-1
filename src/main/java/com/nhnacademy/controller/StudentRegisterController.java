@@ -24,7 +24,7 @@ public class StudentRegisterController {
 
     @GetMapping
     public String studentRegisterForm() {
-        return "studentRegister";
+        return "view/studentRegister";
     }
 
     @PostMapping
@@ -35,7 +35,7 @@ public class StudentRegisterController {
             throw new ValidationFailedException(bindingResult);
         }
 
-        ModelAndView modelAndView = new ModelAndView("studentView");
+        ModelAndView modelAndView = new ModelAndView("view/studentView");
         Student student = studentRepository.register(
                 studentRequest.getName(),
                 studentRequest.getEmail(),

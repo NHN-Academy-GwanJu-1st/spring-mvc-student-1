@@ -41,7 +41,7 @@ public class StudentController {
             Model model) {
 
         model.addAttribute("student", student);
-        return "studentView";
+        return "view/studentView";
     }
 
     @GetMapping(value = "/{studentId}", params = {"hideScore"})
@@ -55,7 +55,7 @@ public class StudentController {
 
         model.addAttribute("hideCheck", true);
 
-        return "studentView";
+        return "view/studentView";
     }
 
 
@@ -66,7 +66,7 @@ public class StudentController {
 
         model.addAttribute("student", student);
 
-        return "studentModify";
+        return "view/studentModify";
     }
 
     @PostMapping("/{studentId}/modify")
@@ -89,7 +89,7 @@ public class StudentController {
 
         model.addAttribute("student", modified);
 
-        return "studentView";
+        return "view/studentView";
     }
 
 
@@ -97,6 +97,6 @@ public class StudentController {
     public String handleStudentNotFound(StudentNotFoundException ex, Model model) {
         log.error("Call StudentController handleStudentNotFound : {}", ex);
         model.addAttribute("exception", ex);
-        return "error";
+        return "view/error";
     }
 }
