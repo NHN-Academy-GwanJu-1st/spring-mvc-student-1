@@ -1,6 +1,7 @@
 package com.nhnacademy.config;
 
 import com.nhnacademy.controller.ControllerBase;
+import com.nhnacademy.interceptor.LoginCheckInterceptor;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -9,9 +10,13 @@ import org.springframework.context.MessageSourceAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
@@ -35,9 +40,20 @@ public class WebConfig implements WebMvcConfigurer, ApplicationContextAware, Mes
         this.messageSource = messageSource;
     }
 
+    @Bean
+    public LocaleResolver localeResolver() {
+        return new SessionLocaleResolver();
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new LocaleChangeInterceptor());
+        registry.addInterceptor(new LoginCheckInterceptor()).excludePathPatterns("/", "/login");
+    }
+
+
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
-//        registry.jsp("/WEB-INF/view/", ".jsp");
         registry.viewResolver(thymeleafViewResolver());
     }
 

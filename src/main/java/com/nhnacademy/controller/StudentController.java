@@ -41,6 +41,7 @@ public class StudentController {
             Model model) {
 
         model.addAttribute("student", student);
+        model.addAttribute("hideCheck", false);
         return "view/studentView";
     }
 

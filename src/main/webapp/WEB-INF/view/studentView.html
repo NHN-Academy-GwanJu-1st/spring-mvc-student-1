@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>학생 정보 조회</title>
 </head>
 <body>
-<!--<c:if test="${!hideCheck}">-->
-    <p>이름: <span th:text="${student.name}"></span></p>
-    <p>이메일: <span th:text="${student.email}"></span></p>
-    <p>성적: <span th:text="${student.score}"></span></p>
-    <p>평가: <span th:text="${student.comment}"></span></p>
-    <br />
-<!--</c:if>-->
-<!--<c:if test="${hideCheck}">-->
-    <p>이름: <span th:text="${student.name}"></span></p>
-    <p>이메일: <span th:text="${student.email}"></span></p>
+    <th:block th:if="${!hideCheck}">
+    <span th:text="#{name}"></span> : <span th:text="${student.name}"></span></br>
+    <span th:text="#{email}"></span> : <span th:text="${student.email}"></span></br>
+    <span th:text="#{score}"></span> : <span th:text="${student.score}"></span></br>
+    <span th:text="#{comment}"></span> : <span th:text="${student.comment}"></span></br>
     <br/>
-<!--</c:if>-->
-    <a th:href="@{'/student/' + ${student.id} + '/modify'}">정보 수정</a><br />
+    </th:block>
+
+    <th:block th:unless="${!hideCheck}">
+    <span th:text="#{name}"></span> : <span th:text="${student.name}"></span></br>
+    <span th:text="#{email}"></span> : <span th:text="${student.email}"></span></br>
+    <br/>
+    </th:block>
+    <a th:href="@{'/student/' + ${student.id} + '/modify'}">정보 수정</a><br/>
 </body>
 </html>

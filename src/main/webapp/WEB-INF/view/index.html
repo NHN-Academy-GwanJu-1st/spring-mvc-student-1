@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<th:block th:if="${session.loginUser == null}">
+<a href="/login" th:text="#{login}"></a>
+</th:block>
+
+
+<th:block th:unless="${session.loginUser == null}">
+<a href="/student/register" th:text="#{studentRegister}"></a>
+<a href="/logout" th:text="#{logout}"></a>
+</th:block>
+
+<a href="?locale=ko">ko</a>
+<a href="?locale=en">en</a>
+
+</body>
+</html>

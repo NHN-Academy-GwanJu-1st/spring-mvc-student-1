@@ -13,7 +13,7 @@ public class WebControllerAdvice {
     public String handleValidationFailedException(Exception ex, Model model) {
         log.error("", ex);
         model.addAttribute("exception", ex);
-        return "error";
+        return "view/error";
     }
 
     @ExceptionHandler(Exception.class)
@@ -21,6 +21,6 @@ public class WebControllerAdvice {
         log.error("", ex);
 
         model.addAttribute("exception", ex);
-        return "error";
+        return "view/error";
     }
 }
