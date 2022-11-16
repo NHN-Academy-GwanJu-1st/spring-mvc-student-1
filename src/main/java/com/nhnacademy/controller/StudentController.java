@@ -89,6 +89,7 @@ public class StudentController {
         );
 
         model.addAttribute("student", modified);
+        model.addAttribute("hideCheck", false);
 
         return "view/studentView";
     }

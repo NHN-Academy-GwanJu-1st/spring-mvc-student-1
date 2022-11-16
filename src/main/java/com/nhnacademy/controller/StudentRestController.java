@@ -2,6 +2,7 @@ package com.nhnacademy.controller;
 
 import com.nhnacademy.domain.Student;
 import com.nhnacademy.domain.StudentRegisterRequest;
+import com.nhnacademy.domain.StudentRestRequest;
 import com.nhnacademy.repository.StudentRepository;
 import com.nhnacademy.repository.UserRepository;
 import org.springframework.http.HttpStatus;
@@ -18,7 +19,7 @@ public class StudentRestController {
 
     @PostMapping("/students")
     @ResponseStatus(HttpStatus.CREATED)
-    public void postStudents(StudentRegisterRequest studentRequest) {
+    public void postStudents(StudentRestRequest studentRequest) {
         studentRepository.register(
                 studentRequest.getName(),
                 studentRequest.getEmail(),
@@ -37,7 +38,7 @@ public class StudentRestController {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Student modifyStudent(
             @PathVariable(value = "studentId") long studentId,
-            @RequestBody StudentRegisterRequest studentRequest) {
+            @RequestBody StudentRestRequest studentRequest) {
 
         Student student = studentRepository.getStudent(studentId);
 

@@ -1,13 +1,16 @@
 package com.nhnacademy.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
-import lombok.Value;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.*;
 
-@Value
-public class StudentRegisterRequest {
-
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+public class StudentRestRequest {
     @NotBlank
     private String name;
 

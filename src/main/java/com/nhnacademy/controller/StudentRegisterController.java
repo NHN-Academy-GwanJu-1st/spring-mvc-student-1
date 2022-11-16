@@ -39,7 +39,7 @@ public class StudentRegisterController {
                 studentRequest.getScore(),
                 studentRequest.getComment()
         );
-
+        modelAndView.addObject("hideCheck", false);
         modelAndView.addObject("student", student);
         return modelAndView;
     }

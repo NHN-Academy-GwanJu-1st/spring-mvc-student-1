@@ -48,6 +48,8 @@ public class WebConfig implements WebMvcConfigurer, ApplicationContextAware, Mes
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LocaleChangeInterceptor());
+
+        /* RestController 때문에 주석처리 해두었습니다. */
 //        registry.addInterceptor(new LoginCheckInterceptor()).excludePathPatterns("/", "/login");
     }
 
