@@ -27,14 +27,5 @@ public class User {
         this.password = password;
     }
 
-    private static final String MASK = "*****";
-
-    public static User constructPasswordMaskedUser(User user) {
-        User newUser = User.create(user.getId(), MASK);
-        newUser.setAge(user.getAge());
-        newUser.setName(user.getName());
-
-        return newUser;
-    }
 
 }

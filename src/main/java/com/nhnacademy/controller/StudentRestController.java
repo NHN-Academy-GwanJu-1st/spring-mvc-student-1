@@ -1,13 +1,20 @@
 package com.nhnacademy.controller;
 
 import com.nhnacademy.domain.Student;
-import com.nhnacademy.domain.StudentRegisterRequest;
 import com.nhnacademy.domain.StudentRestRequest;
+import com.nhnacademy.exception.StudentNotFoundException;
+import com.nhnacademy.exception.ValidationFailedException;
 import com.nhnacademy.repository.StudentRepository;
-import com.nhnacademy.repository.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import java.util.Objects;
+
+@Slf4j
 @RestController
 public class StudentRestController {
 
@@ -19,8 +26,8 @@ public class StudentRestController {
 
     @PostMapping("/students")
     @ResponseStatus(HttpStatus.CREATED)
-    public void postStudents(StudentRestRequest studentRequest) {
-        studentRepository.register(
+    public Student postStudents(@Valid @RequestBody StudentRestRequest studentRequest) {
+        return studentRepository.register(
                 studentRequest.getName(),
                 studentRequest.getEmail(),
                 studentRequest.getScore(),
@@ -35,12 +42,10 @@ public class StudentRestController {
     }
 
     @PutMapping("/students/{studentId}")
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.OK)
     public Student modifyStudent(
             @PathVariable(value = "studentId") long studentId,
             @RequestBody StudentRestRequest studentRequest) {
-
-        Student student = studentRepository.getStudent(studentId);
 
         return studentRepository.modify(
                 studentId,
@@ -49,5 +54,4 @@ public class StudentRestController {
                 studentRequest.getScore(),
                 studentRequest.getComment());
     }
-
 }
